@@ -2,47 +2,91 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-if __name__ == "__main__":
-    # Create the Plot
-    fig, ax = plt.subplots()
-    plt.ylabel("Prof Ratings")
-    plt.xlabel("Possible Ratings")
-    plt.title("Shitty profs ratings")
+class App :
+    #### PUBLIC ####
 
-    # Create the Axes for the Plot
-    ratings = [1, 2, 3, 4, 5]
-    num_ratings = [22, 39, 37, 51, 67]
+    def __init__(self, title=None, ylabel=None, xlabel=None) -> None:
+        """
+            Initializes the application space
+        """
 
-    ax.bar(height=num_ratings, x=ratings)
+        # Set class variables
+        self.__title=title
+        self.__xlabel=xlabel
+        self.__ylabel=ylabel
 
-    # Determine the number of samples
-    num_samples = int(0)
+        pass
 
-    for i in range(len(num_ratings)) :
-        num_samples += num_ratings[i]
+    def enter(self) ->None :
+        """
+            Main application functionality
+        """
 
-    # Determine the sample mean
-    sample_mean = 0
+        # Create the Plot
+        fig, ax = plt.subplots()
+        plt.title(self.__title)
+        plt.xlabel(self.__xlabel)
+        plt.ylabel(self.__ylabel)
+    
+        # Create the Axes for the Plot
+        ratings = [1, 2, 3, 4, 5]
+        num_ratings = [22, 39, 37, 51, 67]
+    
+        ax.bar(height=num_ratings, x=ratings)
+    
+        # Determine the number of samples
+        num_samples = int(0)
+    
+        for i in range(len(num_ratings)) :
+            num_samples += num_ratings[i]
+    
+        # Determine the sample mean
+        sample_mean = 0
+    
+        sum = int(0)
+        for i in range(len(ratings)) :
+            sum += ratings[i] * num_ratings[i]
+    
+        if (num_samples > 0) :
+            sample_mean = sum / num_samples
+    
+        # Determine the sample variance
+        sample_variance = 0
+    
+        dist_from_mean = 0
+        for i in range(len(ratings)) :
+            sample_variance = ( (ratings[i] - sample_mean) ** 2 ) * num_ratings[i]
+    
+        if (sample_variance != 0) :
+            sample_variance /= (num_samples - 1)
+    
+        # Display all Data
+        print(f"sample mean: {sample_mean}, sample variance: {sample_variance}, SD: {np.sqrt(sample_variance)}")
+        plt.show()
+    
+    
+        pass
 
-    sum = int(0)
-    for i in range(len(ratings)) :
-        sum += ratings[i] * num_ratings[i]
+    #### PRIVATE ####
 
-    if (num_samples > 0) :
-        sample_mean = sum / num_samples
+    __title = None
+    __xlabel = None
+    __ylabel = None
 
-    # Determine the sample variance
-    sample_variance = 0
- 
-    dist_from_mean = 0
-    for i in range(len(ratings)) :
-        sample_variance = ( (ratings[i] - sample_mean) ** 2 ) * num_ratings[i]
+    pass
 
-    if (sample_variance != 0) :
-        sample_variance /= (num_samples - 1)
+if __name__ == "__main__" :
+    """
+        Primary software application entry point
+    """
 
-    # Display all Data
-    print(f"sample mean: {sample_mean}, sample variance: {sample_variance}, SD: {np.sqrt(sample_variance)}")
-    plt.show()
+    # Initialization
+    xlabel = "Possible Ratings"
+    ylabel = "Prof Ratings"
+    title = "Shitty profs ratings"
+    app = App(xlabel=xlabel, ylabel=ylabel, title=title)
+    
+    # Software Logic
+    app.enter()
 
     pass
