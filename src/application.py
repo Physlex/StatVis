@@ -13,14 +13,12 @@ class App :
         """
             Initializes the application space with class variables
         """
-
         pass
 
-    def run(self) ->None :
+    def run(self) -> None :
         """
             Main application functionality
         """
-
         # Create the Plot
         title = str("Shitty Professor's Ratings")
         x_label = str("Rating Categories")
@@ -44,10 +42,9 @@ class App :
         sample_variance = stats.sample_var(ratings, num_ratings, num_samples, sample_mean)
 
         # Display Data
-        print(f"sample mean: {sample_mean}\n"
-              f"sample variance: {sample_variance}\n"
-              f"sample deviation: {np.sqrt(sample_variance)}"
-        )
+        print("sample mean: {:.2f}".format(sample_mean))
+        print("sample variance: {:.2f}".format(sample_variance))
+        print("sample deviation: {:.2f}".format(np.sqrt(sample_variance)))
         plt.show()
 
         pass
