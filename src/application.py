@@ -31,10 +31,8 @@ class App :
         y_label = str(None)
         y_data_stream = list()
 
-        # Find file location from relative as absolute
-        bar_data_file = File(relative_file_path)
-
         # Clean Data
+        bar_data_file = File(relative_file_path)
         file_lines = bar_data_file.get_contents()
         for i, line in enumerate(file_lines) :
             # Scan for the comma of this line
