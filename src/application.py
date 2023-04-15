@@ -9,6 +9,7 @@ import numpy as np
 
 # Internal
 from simple_stats import SimpleStats
+from file import File
 
 class App :
     #### PUBLIC ####
@@ -31,11 +32,10 @@ class App :
         y_data_stream = list()
 
         # Find file location from relative as absolute
-        abs_file_path = os.path.abspath(relative_file_path)
-        file = Path(abs_file_path)
+        bar_data_file = File(relative_file_path)
 
         # Clean Data
-        file_lines = file.read_text().splitlines()
+        file_lines = bar_data_file.get_contents()
         for i, line in enumerate(file_lines) :
             # Scan for the comma of this line
             comma_index = -1
