@@ -1,7 +1,3 @@
-# Standard
-from pathlib import Path
-import os
-
 # External
 import matplotlib as mpl
 import matplotlib.pyplot as plt
