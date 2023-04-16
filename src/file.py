@@ -1,7 +1,11 @@
-from pathlib import Path
 from os import path
 
 class File :
+    """
+        Abstraction for path representation of a file.
+        Primarily abstracts collection of arbitrary text data
+            from some relative file location.
+    """
     #### PUBLIC ####
 
     def __init__(self, file_path) -> None:
@@ -18,15 +22,42 @@ class File :
             self.__absolute_path = file_path
         else :
             self.__absolute_path = None
-
         pass
 
-    def get_relative_path(self) ->str:
+    #### INTERFACE ####
+
+    def read_contents(self) ->str:
+        """
+            reads and returns the raw contents of the file
+        """
+        assert(self.__relative_path != None)
+
+        abs_path = self.absolute_path
+        assert(abs_path != None)
+
+        path = open(abs_path, 'r', encoding='utf-8')
+        content = path.read().splitlines()
+
+        return content
+
+    #### GETTERS / SETTERS ####
+
+    @property
+    def relative_path(self) ->str:
         return self.__relative_path
 
-    def get_abs_path(self) ->str:
+    @relative_path.getter
+    def relative_path(self) ->str:
+        return self.__relative_path
+
+    @property
+    def absolute_path(self) ->str:
+        return self.__absolute_path
+
+    @absolute_path.getter
+    def absolute_path(self) ->str:
         """
-            Return absolute path
+            Return absolute path to file.
         """
         if (self.__absolute_path == None) :
             absolute_path = self.__abs_from_relative()
@@ -35,24 +66,11 @@ class File :
         else :
             return self.__absolute_path
 
-    def get_contents(self) ->str:
-        """
-            returns the contents of the file
-        """
-        assert(self.__relative_path != None)
-
-        abs_path = self.get_abs_path()
-        assert(abs_path != None)
-
-        path = open(abs_path, 'r', encoding='utf-8')
-        content = path.read().splitlines()
-
-        return content
+    #### PRIVATE_METHODS ####
 
     def __abs_from_relative(self) ->str:
         """
-            Create an absolute file path from
-            relative path if not already defined
+            Create an absolute file path from relative
         """
         file_path = path.abspath(self.__relative_path)
         assert(file_path != None)
@@ -63,9 +81,7 @@ class File :
         else :
             return None
 
-    #### PRIVATE ####
+    #### ATTRIBUTES ####
 
     __absolute_path:str
     __relative_path:str
-
-    pass

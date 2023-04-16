@@ -1,5 +1,4 @@
 # External
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -8,6 +7,10 @@ from simple_stats import SimpleStats
 from file import File
 
 class App :
+    """
+        Abstraction for application logic.
+        Controls rendering, 
+    """
     #### PUBLIC ####
 
     def __init__(self) -> None:
@@ -29,7 +32,7 @@ class App :
 
         # Clean Data
         bar_data_file = File(relative_file_path)
-        file_lines = bar_data_file.get_contents()
+        file_lines = bar_data_file.read_contents()
         for i, line in enumerate(file_lines) :
             # Scan for the comma of this line
             comma_index = -1
