@@ -30,24 +30,6 @@ class App :
         y_label = str(None)
         y_data_stream = list()
 
-        # Clean Data
-        bar_data_file = File(relative_file_path)
-        file_lines = bar_data_file.read_contents()
-        for i, line in enumerate(file_lines) :
-            # Scan for the comma of this line
-            comma_index = -1
-            for j, char in enumerate(line) :
-                if (char == ',') :
-                    comma_index = j
-
-            # Slice around comma and convert to relevant data types
-            if (i == 0) :
-                x_label = line[0 : comma_index]
-                y_label = line[comma_index + 1 : len(line)]
-            else :
-                x_data_stream.append(int(line[0 : comma_index]))
-                y_data_stream.append(int(line[comma_index + 1 : len(line)]))
-
         # Create the Plot
         fig, ax = plt.subplots()
 

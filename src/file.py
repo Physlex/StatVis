@@ -8,7 +8,7 @@ class File :
     """
     #### PUBLIC ####
 
-    def __init__(self, file_path) -> None:
+    def __init__(self, file_path) ->None:
         """
             Constructs a path object
         """
