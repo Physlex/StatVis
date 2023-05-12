@@ -2,7 +2,6 @@ class SimpleStats :
     """
         Defines \'Simple\' math constructs used frequently in statistics
     """
-
     #### PUBLIC ####
 
     def __init__(self) -> None:
