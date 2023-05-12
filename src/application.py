@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Internal
-from libs.math.simple_stats import SimpleStats
 from libs.backend.file import File
+from libs.math.simple_stats import SimpleStats
 
 class App :
     #### PUBLIC ####
