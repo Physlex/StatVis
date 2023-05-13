@@ -1,5 +1,4 @@
 # External
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -58,8 +57,10 @@ class App :
         # Determine sample statistics
         stats = SimpleStats()
         num_samples = stats.num_samples(y_data_stream)
-        sample_mean = stats.sample_mean(x_data_stream, y_data_stream, num_samples)
-        sample_variance = stats.sample_var(x_data_stream, y_data_stream, num_samples, sample_mean)
+        sample_mean = stats.sample_mean(
+            x_data_stream, y_data_stream, num_samples)
+        sample_variance = stats.sample_var(
+            x_data_stream, y_data_stream, num_samples, sample_mean)
 
         # Display Data
         print("sample mean: {:.2f}".format(sample_mean))

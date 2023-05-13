@@ -22,10 +22,12 @@ class SimpleStats :
 
         return num_samples
 
-    def sample_mean(self, x_data_stream :list, y_data_stream :list, num_samples :int) -> float :
+    def sample_mean(self,
+                    x_data_stream :list, y_data_stream :list,
+                    num_samples :int) -> float :
         """
-            Construct the sample mean from the x and y streams, adjusts the x stream by number of instances
-            defined as y.
+            Construct the sample mean from the x and y streams.
+            Adjusts the x stream by number of instances defined as y.
         """
 
         # HEADER GUARD
@@ -45,7 +47,10 @@ class SimpleStats :
 
         return sample_mean
 
-    def sample_var(self, x_data_stream :list, y_data_stream :list, num_samples :int, sample_mean :float) -> float :
+    def sample_var(self,
+                   x_data_stream :list, y_data_stream :list,
+                   num_samples :int,
+                   sample_mean :float) -> float :
         """
             Calculate the sample variance when the population mean is unknown
         """
@@ -61,7 +66,8 @@ class SimpleStats :
         # Calculate the second raw moment about the sample mean
         sample_variance = float(0)
         for i in range(len(x_data_stream)) :
-            sample_variance = ( (x_data_stream[i] - sample_mean) ** 2) * y_data_stream[i]
+            x = (x_data_stream[i] - sample_mean) ** 2
+            sample_variance = (x) * y_data_stream[i]
 
         # Determine sample variance
         sample_variance = sample_variance / (num_samples - 1)

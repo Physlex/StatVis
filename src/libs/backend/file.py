@@ -1,4 +1,3 @@
-from pathlib import Path
 from os import path
 
 class File :
@@ -9,12 +8,12 @@ class File :
             Constructs a path object
         """
 
-        if (path.isfile(file_path) == False) :
+        if (path.isfile(file_path) is False) :
             print(f"Error: {file_path} is invalid")
         else :
             self.__relative_path = file_path
         
-        if (path.isabs(file_path) == True) :
+        if (path.isabs(file_path) is True) :
             self.__absolute_path = file_path
         else :
             self.__absolute_path = None
@@ -28,9 +27,9 @@ class File :
         """
             Return absolute path
         """
-        if (self.__absolute_path == None) :
+        if (self.__absolute_path is None) :
             absolute_path = self.__abs_from_relative()
-            assert(absolute_path != None)
+            assert(absolute_path is not None)
             return absolute_path
         else :
             return self.__absolute_path
@@ -39,10 +38,10 @@ class File :
         """
             returns the contents of the file
         """
-        assert(self.__relative_path != None)
+        assert(self.__relative_path is not None)
 
         abs_path = self.get_abs_path()
-        assert(abs_path != None)
+        assert(abs_path is not None)
 
         path = open(abs_path, 'r', encoding='utf-8')
         content = path.read().splitlines()
@@ -55,7 +54,7 @@ class File :
             relative path if not already defined
         """
         file_path = path.abspath(self.__relative_path)
-        assert(file_path != None)
+        assert(file_path is not None)
 
         if (path.isabs(file_path)) :
             self.__absolute_path = file_path
